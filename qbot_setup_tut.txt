@@ -1,0 +1,68 @@
+I UNDERSTAND ITS A SHITTY TOPIC BUT I GET ASKED LIKE 3 TIMES A DAY HOW TO DO IT
+
+
+
+
+
+Needed: 
+1. PuTTy
+2. WinSCP
+2. VPS with CentOS 6.x installed. And another VPS for scanning in the future. (to get bots)
+3. A fucking basic understanding of botnets
+
+I tried to dummy this up for beginners.
+
+Lets (w)get started
+
+1. open your client.c with notepad++ and ctrl+f and replace all the ip's with your vps IP
+
+2. Now go into PuTTy and connect to your vps, and login
+
+3. yum update -y
+4. yum install gcc -y
+5. mkdir compile <--- these are just making directories, or 'folders'
+6. mkdir tel <----
+
+5. login to same vps with WinSCP
+
+6. open the compile folder that you created in step 5 and put in cc7.py (cross-compiler) and your client.c
+
+7. open tel folder from step 6 and put in your server.c
+
+8. Go back to putty
+
+9. cd compile <-- this brings you to your compile folder
+10. python cc7.py client.c [your vps ip]
+Get archs? YES
+(takes a bit)
+
+WHEN THE GREEN LINE POPS UP FOR STEP 10, COPY THAT SHIT YOU GONNA NEED IT FOR SCANNING
+
+11. cd <<---- brings back to root of vps
+12. cd tel <---- brings to tel folder
+13. nano login.txt 
+
+If you get an error for the nano command, type 'yum install nano' then try it.
+
+
+Make login, all on one line; format; USER PASS
+USER PASS
+etc
+
+14. ctrl x
+15. crtl y
+16. enter
+
+17. gcc server.c -o server -pthread
+18. screen ./server [bot port, from your client.c] 1000 [connect port, anything you want]
+19. CTRL+A and then D while holding the ctrl to exit that screen
+20. server iptables stop
+21. service httpd restart
+22. screen -rx
+
+NOW;
+open PuTTy and connect to the same VPS using same IP but with raw, 
+and the connect port you created in step 18
+
+
+Now ur a sp00ky sp00ky hacker lolz
